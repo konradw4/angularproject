@@ -5,6 +5,20 @@
     <title>Document</title>
 </head>
 <body ng-app="app">
+    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li>
+            <a ui-sref="home">Home</a>
+          </li>
+          <li>
+            <a ui-sref="github">GitHub</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
     <div class="container">
         <ui-view></ui-view>
     </div>
