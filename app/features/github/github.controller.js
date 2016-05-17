@@ -10,10 +10,11 @@ export default class GitHubController {
       .then(this.handleGetReposSuccess.bind(this));
       
     
-      
-    var ref = new Firebase("https://githubangular.firebaseio.com/users");
-    var usersRef = ref.child(this.selectedUser);
-    this.comment = $firebaseArray(usersRef);
+    if(this.selectedUser){
+      var ref = new Firebase("https://githubangular.firebaseio.com/users");
+      var usersRef = ref.child(this.selectedUser);
+      this.comment = $firebaseArray(usersRef);
+    }
 
     this.addMessage = function(){
       usersRef.push().set({
