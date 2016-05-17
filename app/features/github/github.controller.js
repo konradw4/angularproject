@@ -1,5 +1,5 @@
 export default class GitHubController {
-  constructor(GitHubService, $stateParams) {
+  constructor(GitHubService, $stateParams, $firebaseArray) {
     
     this.selectedUser = $stateParams.user
     
@@ -8,6 +8,22 @@ export default class GitHubController {
     
     GitHubService.getRepos(this.selectedUser)
       .then(this.handleGetReposSuccess.bind(this));
+      
+    
+      
+    var ref = new Firebase("https://githubangular.firebaseio.com/users");
+    var usersRef = ref.child(this.selectedUser);
+    this.comment = $firebaseArray(usersRef);
+
+    this.addMessage = function(){
+      usersRef.push().set({
+        author: this.author,
+        message: this.message
+      });
+      
+      this.author = "";
+      this.message = "";
+    }
       
   }
   
